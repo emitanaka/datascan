@@ -1,12 +1,12 @@
 Package: datascan
-Title: Scan data for quick structural summaries and checks
+Title: Scan Data for Quick Structural Summaries and Checks
 Version: 0.1.0
 Authors@R: 
     person("Emi", "Tanaka", , "dr.emi.tanaka@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-1455-259X"))
-Description: Scans data for checking columns that are constant, bijective, missing or all unique. 
+Description: Scans data for checking columns that are constant, one-to-one, missing or all unique. 
  Users can also try to identify the columns that uniquely indexes the observational unit and whether
- some columns are nested or crossed.
+ some columns are nested or complete.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -25,7 +25,7 @@ Imports:
     tidyr,
     tidyselect
 Depends: 
-    R (>= 3.5)
+    R (>= 4.1.0)
 LazyData: true
 URL: https://github.com/emitanaka/datascan, http://emitanaka.org/datascan/
 BugReports: https://github.com/emitanaka/datascan/issues

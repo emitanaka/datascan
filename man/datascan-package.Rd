@@ -4,9 +4,9 @@
 \name{datascan-package}
 \alias{datascan}
 \alias{datascan-package}
-\title{datascan: Scan data for quick structural summaries and checks}
+\title{datascan: Scan Data for Quick Structural Summaries and Checks}
 \description{
-Scans data for checking columns that are constant, bijective, missing or all unique. Users can also try to identify the columns that uniquely indexes the observational unit and whether some columns are nested or crossed.
+Scans data for checking columns that are constant, one-to-one, missing or all unique. Users can also try to identify the columns that uniquely indexes the observational unit and whether some columns are nested or complete.
 }
 \seealso{
 Useful links:

@@ -15,6 +15,8 @@ concurrence_table(data, x, group, na.rm = FALSE)
 \item{x}{Categorical variable to be used for the concurrence matrix.}
 
 \item{group}{Categorical grouping variable.}
+
+\item{na.rm}{Remove NA values when checking for concurrence.}
 }
 \value{
 A concurrence matrix or table
@@ -32,6 +34,8 @@ df <- df[sample(nrow(df), 100), ]
 extract(mat, "E1", "E2")
 extract(mat, "E1", c("E2", "E3"))
 extract(mat, c("E5", "E6", "E7"), c("E2", "E3"))
-proportions(mat, 1) # proportion of levels in the first variable at each level of the second variable
+# proportion of levels in the first variable
+# at each level of the second variable
+proportions(mat, 1)
 
 }

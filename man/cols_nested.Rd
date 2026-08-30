@@ -18,12 +18,7 @@ A list of identified nested columns. The first element of each list is the child
 This function checks for nestedness in a data frame. It identifies columns that are nested within other columns, meaning that the values in one column are subsets of the values in another column. The function returns a list of identified nested columns and can print the results to the console.
 }
 \examples{
-df <- data.frame(
-  A = c("x", "y", "z"),
-  B = c("x", "y", "z", "w"),
-  C = c("x", "y", "z")
-)
-cols_nested(df)
+cols_nested(CO2)
 }
 \seealso{
 Other quality checks:

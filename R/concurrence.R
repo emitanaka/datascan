@@ -8,6 +8,7 @@
 #' @param data A data frame containing the MET data
 #' @param x Categorical variable to be used for the concurrence matrix.
 #' @param group Categorical grouping variable.
+#' @param na.rm Remove NA values when checking for concurrence.
 #' @return A concurrence matrix or table
 #' @examples
 #' df <- expand.grid(gen = paste0("G", 1:20), env = paste0("E", 1:15))
@@ -16,7 +17,9 @@
 #' extract(mat, "E1", "E2")
 #' extract(mat, "E1", c("E2", "E3"))
 #' extract(mat, c("E5", "E6", "E7"), c("E2", "E3"))
-#' proportions(mat, 1) # proportion of levels in the first variable at each level of the second variable
+#' # proportion of levels in the first variable
+#' # at each level of the second variable
+#' proportions(mat, 1)
 #'
 #' @export
 concurrence_matrix <- function(data, x, group, na.rm = FALSE) {
