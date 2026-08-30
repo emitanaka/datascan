@@ -65,41 +65,34 @@ print.concurrence_mat <- function(x, n = 10, ...) {
 #' @export
 concurrence_table <- function(data, x, group, na.rm = FALSE) {
   mat <- concurrence_matrix(data, {{ x }}, {{ group }}, na.rm = na.rm)
+  inv_mat <- diag(1 / diag(mat))
+  dimnames(inv_mat) <- dimnames(mat)
+  prop1 <- as.data.frame(inv_mat %*% mat)
+  prop2 <- as.data.frame(mat %*% inv_mat)
   res <- as.data.frame(mat)
+
   grp_var <- attr(mat, ".vars")[2]
   grp_var1 <- paste0(grp_var, "_1")
   grp_var2 <- paste0(grp_var, "_2")
-  res <- res |>
-    tibble::rownames_to_column(grp_var1) |>
-    tidyr::pivot_longer(
-      -tidyselect::any_of(grp_var1),
-      names_to = grp_var2,
-      values_to = "concurrence"
-    ) |>
-    dplyr::mutate(
-      !!grp_var1 := reorder(
-        !!rlang::sym(grp_var1),
-        concurrence
-      ),
-      !!grp_var2 := reorder(
-        !!rlang::sym(grp_var2),
-        concurrence
+  convert_to_long <- function(dat, name = "concurrence") {
+    dat <- dat |>
+      tibble::rownames_to_column(grp_var1) |>
+      tidyr::pivot_longer(
+        -tidyselect::any_of(grp_var1),
+        names_to = grp_var2,
+        values_to = name
       )
-    ) |>
-    dplyr::mutate(
-      prop_in_1 = concurrence /
-        sum(concurrence[
-          !!rlang::sym(grp_var1) == !!rlang::sym(grp_var2)
-        ]),
-      .by = !!rlang::sym(grp_var1)
-    ) |>
-    dplyr::mutate(
-      prop_in_2 = concurrence /
-        sum(concurrence[
-          !!rlang::sym(grp_var1) == !!rlang::sym(grp_var2)
-        ]),
-      .by = !!rlang::sym(grp_var2)
-    )
+    dat[[grp_var1]] <- factor(dat[[grp_var1]])
+    dat[[grp_var2]] <- factor(dat[[grp_var2]])
+    dat
+  }
+  res <- convert_to_long(res, name = "concurrence")
+  prop1 <- convert_to_long(prop1, name = "prop_in_1")
+  prop2 <- convert_to_long(prop2, name = "prop_in_2")
+  res[[grp_var1]] <- stats::reorder(res[[grp_var1]], res[["concurrence"]])
+  res[[grp_var2]] <- stats::reorder(res[[grp_var2]], res[["concurrence"]])
+  res <- dplyr::left_join(res, prop1, by = c(grp_var1, grp_var2))
+  res <- dplyr::left_join(res, prop2, by = c(grp_var1, grp_var2))
   tibble::new_tibble(res, class = "concurrence_tbl", .group_var = grp_var)
 }
 

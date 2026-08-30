@@ -12,4 +12,6 @@ test_that("concurrence works", {
     ),
     ignore_attr = TRUE
   )
+  #df2 <- df[-c(1:2), ]
+  #concurrence_table(df2, var, grp)
 })

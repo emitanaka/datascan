@@ -46,16 +46,11 @@ is_complete <- function(x, y, na.rm = TRUE) {
 #' This function checks for nestedness in a data frame. It identifies columns that are nested within other columns, meaning that the values in one column are subsets of the values in another column. The function returns a list of identified nested columns and can print the results to the console.
 #'
 #' @param data The data frame to be checked for nestedness.
-#' @param print Print the output or not.
+#' @param na.rm Remove NA values when checking for nestedness.
 #' @return A list of identified nested columns. The first element of each list is the child variable, and the second element is the parent variable.
 #' @family quality checks
 #' @examples
-#' df <- data.frame(
-#'   A = c("x", "y", "z"),
-#'   B = c("x", "y", "z", "w"),
-#'   C = c("x", "y", "z")
-#' )
-#' cols_nested(df)
+#' cols_nested(CO2)
 #' @export
 cols_nested <- function(data, na.rm = FALSE) {
   stopifnot(ncol(data) > 0)

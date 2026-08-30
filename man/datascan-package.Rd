@@ -8,6 +8,15 @@
 \description{
 Scans data for checking columns that are constant, bijective, missing or all unique. Users can also try to identify the columns that uniquely indexes the observational unit and whether some columns are nested or crossed.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/emitanaka/datascan}
+  \item \url{http://emitanaka.org/datascan/}
+  \item Report bugs at \url{https://github.com/emitanaka/datascan/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Emi Tanaka \email{dr.emi.tanaka@gmail.com} (\href{https://orcid.org/0000-0002-1455-259X}{ORCID}) [copyright holder]
 

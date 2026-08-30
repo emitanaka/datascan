@@ -17,7 +17,12 @@ Config/roxygen2/version: 8.1.0
 Imports: 
     cli,
     dplyr,
+    glue,
+    magrittr,
+    pillar,
     rlang,
+    tibble,
+    tidyr,
     tidyselect
 Depends: 
     R (>= 3.5)

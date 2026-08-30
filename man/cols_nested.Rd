@@ -9,7 +9,7 @@ cols_nested(data, na.rm = FALSE)
 \arguments{
 \item{data}{The data frame to be checked for nestedness.}
 
-\item{print}{Print the output or not.}
+\item{na.rm}{Remove NA values when checking for nestedness.}
 }
 \value{
 A list of identified nested columns. The first element of each list is the child variable, and the second element is the parent variable.

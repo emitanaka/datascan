@@ -1,0 +1,43 @@
+---
+format: gfm
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# datascan
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of datascan is to provide a set of functions to perform data quality checks and data exploration in R. It includes functions for checking missing values, identifying nested columns, and other common data quality issues.
+
+## Installation
+
+You can install the development version of datascan from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("emitanaka/datascan")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(datascan)
+head(CO2)
+cols_identify_all(CO2)
+cols_nested(CO2)
+concurrence_matrix(CO2, Plant, Type)
+```
+
