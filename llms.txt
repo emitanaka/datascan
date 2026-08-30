@@ -1,0 +1,51 @@
+Scans data for checking columns that are constant, bijective, missing or
+all unique. Users can also try to identify the columns that uniquely
+indexes the observational unit and whether some columns are nested or
+crossed.
+
+# Package index
+
+## All functions
+
+- [`add_row_id()`](http://emitanaka.org/datascan/reference/add_row_id.md)
+  : Add a row ID column to a data frame
+- [`as_numerical()`](http://emitanaka.org/datascan/reference/as_numerical.md)
+  : Coerce to numerical and identify non-numerical entries
+- [`cols_all_unique()`](http://emitanaka.org/datascan/reference/cols_all_unique.md)
+  : Identify columns with all unique values
+- [`cols_bijective()`](http://emitanaka.org/datascan/reference/cols_bijective.md)
+  : Identify bijective (one-to-one correspondence) columns
+- [`cols_constant()`](http://emitanaka.org/datascan/reference/cols_constant.md)
+  [`cols_unary()`](http://emitanaka.org/datascan/reference/cols_constant.md)
+  : Identify constant columns
+- [`cols_identify_all()`](http://emitanaka.org/datascan/reference/cols_identify_all.md)
+  : Identify all columns with potential issues
+- [`cols_missing()`](http://emitanaka.org/datascan/reference/cols_missing.md)
+  : Identify columns that have certain proportion of missing values
+- [`cols_binary()`](http://emitanaka.org/datascan/reference/cols_multinary.md)
+  [`cols_ternary()`](http://emitanaka.org/datascan/reference/cols_multinary.md)
+  [`cols_multinary()`](http://emitanaka.org/datascan/reference/cols_multinary.md)
+  : Identify columns with a specific number of unique values
+- [`cols_nested()`](http://emitanaka.org/datascan/reference/cols_nested.md)
+  : Nestedness checks
+- [`concurrence_matrix()`](http://emitanaka.org/datascan/reference/concurrence_matrix.md)
+  [`concurrence_table()`](http://emitanaka.org/datascan/reference/concurrence_matrix.md)
+  : Get the concurrence matrix or table
+- [`is_complete()`](http://emitanaka.org/datascan/reference/is_complete.md)
+  : Is variable complete within another variable?
+- [`is_nested()`](http://emitanaka.org/datascan/reference/is_nested.md)
+  : Is variable nested within another variable?
+- [`is_numerical()`](http://emitanaka.org/datascan/reference/is_numerical.md)
+  : Is the variable numerical?
+- [`is_observational_unit()`](http://emitanaka.org/datascan/reference/is_observational_unit.md)
+  [`is_obs_unit()`](http://emitanaka.org/datascan/reference/is_observational_unit.md)
+  : Is it the observational unit?
+- [`rows_missing()`](http://emitanaka.org/datascan/reference/rows_missing.md)
+  : Identify rows that have certain proportion of missing values
+- [`watch_tits`](http://emitanaka.org/datascan/reference/watch_tits.md)
+  : Coordination of care by breeders and helpers in the cooperatively
+  breeding long-tailed tit
+- [`white_clover`](http://emitanaka.org/datascan/reference/white_clover.md)
+  : A field experiment assessing the roles of drought, herbivory, and
+  local climate for white clovers
+
