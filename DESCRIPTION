@@ -22,3 +22,5 @@ Imports:
 Depends: 
     R (>= 3.5)
 LazyData: true
+URL: https://github.com/emitanaka/datascan
+BugReports: https://github.com/emitanaka/datascan/issues
