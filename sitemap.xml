@@ -1,7 +1,10 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>http://emitanaka.org/datascan/404.html</loc></url>
+<url><loc>http://emitanaka.org/datascan/LICENSE-text.html</loc></url>
+<url><loc>http://emitanaka.org/datascan/LICENSE.html</loc></url>
 <url><loc>http://emitanaka.org/datascan/authors.html</loc></url>
 <url><loc>http://emitanaka.org/datascan/index.html</loc></url>
+<url><loc>http://emitanaka.org/datascan/news/index.html</loc></url>
 <url><loc>http://emitanaka.org/datascan/reference/add_row_id.html</loc></url>
 <url><loc>http://emitanaka.org/datascan/reference/as_numerical.html</loc></url>
 <url><loc>http://emitanaka.org/datascan/reference/cols_all_unique.html</loc></url>

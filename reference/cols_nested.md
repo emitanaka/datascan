@@ -18,9 +18,9 @@ cols_nested(data, na.rm = FALSE)
 
   The data frame to be checked for nestedness.
 
-- print:
+- na.rm:
 
-  Print the output or not.
+  Remove NA values when checking for nestedness.
 
 ## Value
 

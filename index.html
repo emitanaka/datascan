@@ -32,6 +32,7 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -45,8 +46,70 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9">
-Scans data for checking columns that are constant, bijective, missing or all unique. Users can also try to identify the columns that uniquely indexes the observational unit and whether some columns are nested or crossed.
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header"><h1 id="datascan">datascan<a class="anchor" aria-label="anchor" href="#datascan"></a>
+</h1></div>
+<!-- badges: start -->
+<!-- badges: end -->
+<p>The goal of datascan is to provide a set of functions to perform data quality checks and data exploration in R. It includes functions for checking missing values, identifying nested columns, and other common data quality issues.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the development version of datascan from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"emitanaka/datascan"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
+<p>This is a basic example which shows you how to solve a common problem:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/emitanaka/datascan" class="external-link">datascan</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">CO2</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Plant   Type  Treatment conc uptake</span></span>
+<span><span class="co">#&gt; 1   Qn1 Quebec nonchilled   95   16.0</span></span>
+<span><span class="co">#&gt; 2   Qn1 Quebec nonchilled  175   30.4</span></span>
+<span><span class="co">#&gt; 3   Qn1 Quebec nonchilled  250   34.8</span></span>
+<span><span class="co">#&gt; 4   Qn1 Quebec nonchilled  350   37.2</span></span>
+<span><span class="co">#&gt; 5   Qn1 Quebec nonchilled  500   35.3</span></span>
+<span><span class="co">#&gt; 6   Qn1 Quebec nonchilled  675   39.2</span></span>
+<span><span class="fu"><a href="reference/cols_identify_all.html">cols_identify_all</a></span><span class="op">(</span><span class="va">CO2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; → No columns with all unique values.</span></span>
+<span><span class="co">#&gt; → No bijective columns.</span></span>
+<span><span class="co">#&gt; → No constant columns.</span></span>
+<span><span class="co">#&gt; → No identified columns with missing proportion.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── Checking if all values are unique in a column ───────────────────────────────</span></span>
+<span><span class="co">#&gt; [1] NA</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── Checking if any two columns are bijective ───────────────────────────────────</span></span>
+<span><span class="co">#&gt; list()</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── Checking if any column is all constant ──────────────────────────────────────</span></span>
+<span><span class="co">#&gt; [1] NA</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── Checking if columns with preset cut-off in missing values ───────────────────</span></span>
+<span><span class="co">#&gt; [1] NA</span></span>
+<span><span class="fu"><a href="reference/cols_nested.html">cols_nested</a></span><span class="op">(</span><span class="va">CO2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; [1] "Plant" "Type" </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; [1] "Plant"     "Treatment"</span></span>
+<span><span class="fu"><a href="reference/concurrence_matrix.html">concurrence_matrix</a></span><span class="op">(</span><span class="va">CO2</span>, <span class="va">Plant</span>, <span class="va">Type</span><span class="op">)</span></span>
+<span><span class="co">#&gt; • Diagonal shows the total number of levels for Plant at the corresponding</span></span>
+<span><span class="co">#&gt;   level for Type</span></span>
+<span><span class="co">#&gt; • Off-diagonal shows the number of common levels for Plant between the two</span></span>
+<span><span class="co">#&gt;   levels for Type</span></span>
+<span><span class="co">#&gt;              </span></span>
+<span><span class="co">#&gt;               Quebec Mississippi</span></span>
+<span><span class="co">#&gt;   Quebec           6           0</span></span>
+<span><span class="co">#&gt;   Mississippi      0           6</span></span>
+<span><span class="co">#&gt;   </span></span>
+<span><span class="co">#&gt; ℹ Concurrence matrix: 2 × 2 Type.</span></span></code></pre></div>
+</div>
+</div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
@@ -58,9 +121,8 @@ Scans data for checking columns that are constant, bijective, missing or all uni
 <div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li>
-<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
-</li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
 
