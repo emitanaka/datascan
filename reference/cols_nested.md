@@ -39,12 +39,11 @@ Other quality checks:
 ## Examples
 
 ``` r
-df <- data.frame(
-  A = c("x", "y", "z"),
-  B = c("x", "y", "z", "w"),
-  C = c("x", "y", "z")
-)
-#> Error in data.frame(A = c("x", "y", "z"), B = c("x", "y", "z", "w"), C = c("x",     "y", "z")): arguments imply differing number of rows: 3, 4
-cols_nested(df)
-#> list()
+cols_nested(CO2)
+#> [[1]]
+#> [1] "Plant" "Type" 
+#> 
+#> [[2]]
+#> [1] "Plant"     "Treatment"
+#> 
 ```

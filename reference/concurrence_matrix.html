@@ -13,7 +13,7 @@ The matrix is symmetric."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">datascan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,6 +68,10 @@ The matrix is symmetric.</p>
 <dt id="arg-group">group<a class="anchor" aria-label="anchor" href="#arg-group"></a></dt>
 <dd><p>Categorical grouping variable.</p></dd>
 
+
+<dt id="arg-na-rm">na.rm<a class="anchor" aria-label="anchor" href="#arg-na-rm"></a></dt>
+<dd><p>Remove NA values when checking for concurrence.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -109,7 +113,9 @@ The matrix is symmetric.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   E5  1  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   E6  2  5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   E7  1  1</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/proportions.html" class="external-link">proportions</a></span><span class="op">(</span><span class="va">mat</span>, <span class="fl">1</span><span class="op">)</span> <span class="co"># proportion of levels in the first variable at each level of the second variable</span></span></span>
+<span class="r-in"><span><span class="co"># proportion of levels in the first variable</span></span></span>
+<span class="r-in"><span><span class="co"># at each level of the second variable</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/proportions.html" class="external-link">proportions</a></span><span class="op">(</span><span class="va">mat</span>, <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Diagonal shows the total number of levels for <span style="color: #00BB00;">gen</span> at the corresponding level</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   for <span style="color: #00BB00;">env</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Off-diagonal shows the number of common levels for <span style="color: #00BB00;">gen</span> between the two levels</span>

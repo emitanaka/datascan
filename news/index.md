@@ -1,5 +1,5 @@
 # Changelog
 
-## datascan (development version)
+## datascan 0.1.0
 
 - Initial CRAN submission.

@@ -27,6 +27,10 @@ concurrence_table(data, x, group, na.rm = FALSE)
 
   Categorical grouping variable.
 
+- na.rm:
+
+  Remove NA values when checking for concurrence.
+
 ## Value
 
 A concurrence matrix or table
@@ -67,7 +71,9 @@ extract(mat, c("E5", "E6", "E7"), c("E2", "E3"))
 #>   E5  1  1
 #>   E6  2  5
 #>   E7  1  1
-proportions(mat, 1) # proportion of levels in the first variable at each level of the second variable
+# proportion of levels in the first variable
+# at each level of the second variable
+proportions(mat, 1)
 #> • Diagonal shows the total number of levels for gen at the corresponding level
 #>   for env
 #> • Off-diagonal shows the number of common levels for gen between the two levels

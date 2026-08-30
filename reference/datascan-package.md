@@ -1,9 +1,9 @@
-# datascan: Scan data for quick structural summaries and checks
+# datascan: Scan Data for Quick Structural Summaries and Checks
 
-Scans data for checking columns that are constant, bijective, missing or
-all unique. Users can also try to identify the columns that uniquely
+Scans data for checking columns that are constant, one-to-one, missing
+or all unique. Users can also try to identify the columns that uniquely
 indexes the observational unit and whether some columns are nested or
-crossed.
+complete.
 
 ## See also
 
