@@ -75,8 +75,31 @@ The matrix is symmetric.</p>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A concurrence matrix or table</p>
-    </div>
+    <p><code>concurrence_matrix()</code> returns a symmetric numeric matrix of class
+<code>concurrence_mat</code> with one row and one column
+per level of <code>group</code>. The diagonal entries give the number of distinct
+levels of <code>x</code> observed at each level of <code>group</code>, and the off-diagonal
+entries give the number of levels of <code>x</code> shared by the two corresponding
+levels of <code>group</code>. The names of <code>x</code> and <code>group</code> are stored in the <code>.vars</code>
+attribute.</p>
+<p><code>concurrence_table()</code> returns the same information in long format as a
+tibble of class <code>concurrence_tbl</code>, with one row per pair of <code>group</code> levels
+and the columns:</p><dl><dt><code>&lt;group&gt;_1</code>, <code>&lt;group&gt;_2</code></dt>
+<dd><p>Factors giving the pair of <code>group</code> levels.</p></dd>
+
+<dt><code>concurrence</code></dt>
+<dd><p>Number of levels of <code>x</code> shared by the pair.</p></dd>
+
+<dt><code>prop_in_1</code></dt>
+<dd><p>Proportion of the levels of <code>x</code> in <code>&lt;group&gt;_1</code> that
+are also in <code>&lt;group&gt;_2</code>.</p></dd>
+
+<dt><code>prop_in_2</code></dt>
+<dd><p>Proportion of the levels of <code>x</code> in <code>&lt;group&gt;_2</code> that
+are also in <code>&lt;group&gt;_1</code>.</p></dd>
+
+
+</dl></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>

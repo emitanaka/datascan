@@ -31,7 +31,10 @@ is_obs_unit(.data, ..., .check_redundancy = TRUE)
 
 ## Value
 
-A logical value.
+A single logical value. `TRUE` if the selected columns uniquely identify
+each row of `.data` (and, when `.check_redundancy = TRUE`, no selected
+column is redundant), and `FALSE` otherwise. In an interactive session,
+a message with the result is also printed.
 
 ## Details
 

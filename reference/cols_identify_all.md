@@ -31,7 +31,7 @@ cols_identify_all(data, cutoff = 1, na.rm = FALSE, print = TRUE)
 
 ## Value
 
-A list for each issue.
+A named list with one element per check.
 
 ## See also
 

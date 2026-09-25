@@ -10,3 +10,7 @@ function to extract specific rows and columns from the resulting matrix.
 ``` r
 x |> extract(i, j)
 ```
+
+## Value
+
+The subset of `x` selected by `i` and `j`, equivalent to `x[i, j]`.
