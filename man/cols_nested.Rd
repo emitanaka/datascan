@@ -4,18 +4,29 @@
 \alias{cols_nested}
 \title{Nestedness checks}
 \usage{
-cols_nested(data, na.rm = FALSE)
+cols_nested(data, na.rm = FALSE, ignore = c("constant", "unique", "bijective"))
 }
 \arguments{
 \item{data}{The data frame to be checked for nestedness.}
 
 \item{na.rm}{Remove NA values when checking for nestedness.}
+
+\item{ignore}{A character vector of trivial cases of nesting to ignore,
+i.e. not count as nested. Any of \code{"constant"} (\code{x} or \code{y} has a single
+value), \code{"unique"} (\code{x} has all unique values) and \code{"bijective"} (\code{x} and
+\code{y} have a one-to-one correspondence). Use \code{NULL} to
+count all cases.}
 }
 \value{
 A list of identified nested columns. The first element of each list is the child variable, and the second element is the parent variable.
 }
 \description{
 This function checks for nestedness in a data frame. It identifies columns that are nested within other columns, meaning that the values in one column are subsets of the values in another column. The function returns a list of identified nested columns and can print the results to the console.
+}
+\details{
+By default, trivial cases of nesting (constant columns, columns with all
+unique values and pairs of bijective columns) are not reported as nested.
+Use \code{ignore} to change this (see \code{\link[=is_nested]{is_nested()}}).
 }
 \examples{
 cols_nested(CO2)
