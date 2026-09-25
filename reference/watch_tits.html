@@ -11,9 +11,9 @@ percent_sync2mins: Percentage of each carer's visits which were synchronized (2-
 carer_status: Factor designating whether a carer was a breeding female (female), breeding male (male) or non-breeding helper (helper)
 carer_id: The unique identifier for each carer
 total_feed_rate: The number of feeds performed by all carers per hour
-brood_size: The number of days, since recorded hatching, that a watch was performed
+brood_size: The number of chicks in the brood
 carer_number: The number of carers observed provisioning during a given watch
-watch_duration: The time, in minutes, between the first and last recorded feed during a given watch
+watch_duration_mins: The time, in minutes, between the first and last recorded feed during a given watch
 watch_time: Number of hours since the start of the day 00:00 the watch was started
 brood_age: The number of days, since recorded hatching, that a watch was performed
 julian_hatch_date: The number of days since March 1 each year that the eggs hatched
@@ -35,9 +35,9 @@ percent_sync2mins: Percentage of each carer's visits which were synchronized (2-
 carer_status: Factor designating whether a carer was a breeding female (female), breeding male (male) or non-breeding helper (helper)
 carer_id: The unique identifier for each carer
 total_feed_rate: The number of feeds performed by all carers per hour
-brood_size: The number of days, since recorded hatching, that a watch was performed
+brood_size: The number of chicks in the brood
 carer_number: The number of carers observed provisioning during a given watch
-watch_duration: The time, in minutes, between the first and last recorded feed during a given watch
+watch_duration_mins: The time, in minutes, between the first and last recorded feed during a given watch
 watch_time: Number of hours since the start of the day 00:00 the watch was started
 brood_age: The number of days, since recorded hatching, that a watch was performed
 julian_hatch_date: The number of days since March 1 each year that the eggs hatched
@@ -93,9 +93,9 @@ row_ref: Row reference 1-7950
 <li><p><code>carer_status</code>: Factor designating whether a carer was a breeding female (female), breeding male (male) or non-breeding helper (helper)</p></li>
 <li><p><code>carer_id</code>: The unique identifier for each carer</p></li>
 <li><p><code>total_feed_rate</code>: The number of feeds performed by all carers per hour</p></li>
-<li><p><code>brood_size</code>: The number of days, since recorded hatching, that a watch was performed</p></li>
+<li><p><code>brood_size</code>: The number of chicks in the brood</p></li>
 <li><p><code>carer_number</code>: The number of carers observed provisioning during a given watch</p></li>
-<li><p><code>watch_duration</code>: The time, in minutes, between the first and last recorded feed during a given watch</p></li>
+<li><p><code>watch_duration_mins</code>: The time, in minutes, between the first and last recorded feed during a given watch</p></li>
 <li><p><code>watch_time</code>: Number of hours since the start of the day 00:00 the watch was started</p></li>
 <li><p><code>brood_age</code>: The number of days, since recorded hatching, that a watch was performed</p></li>
 <li><p><code>julian_hatch_date</code>: The number of days since March 1 each year that the eggs hatched</p></li>
@@ -113,7 +113,7 @@ row_ref: Row reference 1-7950
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>An object of class <code>spec_tbl_df</code> (inherits from <code>tbl_df</code>, <code>tbl</code>, <code>data.frame</code>) with 7950 rows and 21 columns.</p>
+    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 7950 rows and 21 columns.</p>
     </div>
     <div class="section level2">
     <h2 id="source">Source<a class="anchor" aria-label="anchor" href="#source"></a></h2>

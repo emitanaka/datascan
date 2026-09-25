@@ -24,14 +24,13 @@
 - `total_feed_rate`: The number of feeds performed by all carers per
   hour
 
-- `brood_size`: The number of days, since recorded hatching, that a
-  watch was performed
+- `brood_size`: The number of chicks in the brood
 
 - `carer_number`: The number of carers observed provisioning during a
   given watch
 
-- `watch_duration`: The time, in minutes, between the first and last
-  recorded feed during a given watch
+- `watch_duration_mins`: The time, in minutes, between the first and
+  last recorded feed during a given watch
 
 - `watch_time`: Number of hours since the start of the day 00:00 the
   watch was started
@@ -64,8 +63,8 @@ watch_tits
 
 ## Format
 
-An object of class `spec_tbl_df` (inherits from `tbl_df`, `tbl`,
-`data.frame`) with 7950 rows and 21 columns.
+An object of class `tbl_df` (inherits from `tbl`, `data.frame`) with
+7950 rows and 21 columns.
 
 ## Source
 

@@ -27,70 +27,91 @@ https://datadryad.org/dataset/doi%3A10.5061/dryad.4xgxd25n1
 
 ## Details
 
-- Garden: Location or site where the plants are grown (e.g., Ontario).
+- Garden: Location of the experimental site (Ontario or Louisiana).
 
-- WholePlotID: Identifier for the whole plot or main experimental block.
+- WholePlotID: Identifier of the whole plot, each containing 8 plants
+  (numbered 1 to 48).
 
-- SplitPlotID: Identifier for a smaller sub-division within the whole
-  plot.
+- SplitPlotID: Identifier of the split plot within each whole plot, each
+  containing 4 plants (numbered 1 or 2).
 
-- PlantID: Unique identifier for each plant.
+- PlantID: Identifier of the plant within each split plot (numbered 1 to
+  4).
 
-- Cyanotype: Plant type based on cyanogenesis (whether the plant
-  produces cyanogenic compounds). Values like AcLi, Acli, etc., indicate
-  different cyanotype genotypes.
+- Cyanotype: One of four phenotypes (AcLi, Acli, acLi or acli) based on
+  the presence or absence of a dominant allele at each of the two loci
+  (Ac/ac and Li/li) underlying hydrogen cyanide (HCN) production.
 
-- Cyanogenesis: Whether the plant is cyanogenic or not (produces cyanide
-  compounds) — e.g., Cyanogenic or Acyanogenic.
+- Cyanogenesis: Whether the plant can produce HCN: Cyanogenic (AcLi) or
+  Acyanogenic (Acli, acLi or acli).
 
-- Ac_ac and Li_li: Specific alleles/genetic markers related to
-  cyanogenesis genes. Different capitalization indicates allele
-  variants.
+- Ac_ac: Whether the plant has at least one dominant allele at the Ac/ac
+  locus (Ac = yes, ac = no).
 
-- Precipitation: Experimental treatment for water — e.g., reduced or
-  controlled precipitation.
+- Li_li: Whether the plant has at least one dominant allele at the Li/li
+  locus (Li = yes, li = no).
 
-- Herbivores: Herbivory pressure treatment — e.g., reduced or Control
-  (normal) herbivore presence.
+- Precipitation: Precipitation reduction treatment (Control or Reduced).
 
-- Survived21: Binary (0/1) indicating whether the plant survived in year
-  21.
+- Herbivores: Herbivore reduction treatment (Control or Reduced).
 
-- Flowered21: Binary (0/1) indicating whether the plant flowered in year
-  21.
+- Survived21: Whether the plant survived the first growing season
+  (2021); 1 = yes, 0 = no.
 
-- Seeded21: Binary (0/1) indicating whether the plant produced seeds in
-  year 21.
+- Flowered21: Whether the plant flowered in the first growing season
+  (2021); 1 = yes, 0 = no.
 
-- FlowerHeadNumber21: Number of flower heads produced by the plant in
-  year 21.
+- Seeded21: Whether the plant produced seeds in the first growing season
+  (2021); 1 = yes, 0 = no.
 
-- SeedSetMass21: Mass (likely grams or mg) of seeds set in year 21.
+- FlowerHeadNumber21: Total number of flower heads produced by the plant
+  in the first growing season (2021).
 
-- MaxArea21: Maximum area (likely leaf or plant canopy area) measured in
-  year 21.
+- SeedSetMass21: Total seed set mass (in grams) from the flower heads
+  collected from the plant in the first growing season (2021).
 
-- GrowthRate21: Growth rate of the plant during year 21 (units unclear,
-  possibly relative or absolute growth).
+- MaxArea21: Maximum lateral area (in cm^2) taken up by the plant across
+  the monthly measurements of the first growing season (2021).
 
-- Herbivory21: Measure of herbivore damage or intensity on the plant in
-  year 21.
+- GrowthRate21: Growth rate of the plant during the first growing season
+  (2021), calculated as ln(maximum lateral area) minus ln(initial
+  lateral area), divided by the number of days between these
+  measurements.
 
-- SurvivedWinter: Binary (0/1) indicating whether the plant survived
-  over the winter period.
+- Herbivory21: Percentage of leaf area consumed by herbivores, averaged
+  across 5 trifoliate leaves per plant, in July of the first growing
+  season (2021).
 
-- Survived22: Binary (0/1) indicating survival during year 22.
+- SurvivedWinter: Whether the plant survived the winter between the 2021
+  and 2022 growing seasons; 1 = yes, 0 = no. This is NA for all plants
+  in Louisiana and for plants in Ontario that died during the 2021
+  growing season.
 
-- Flowered22: Binary (0/1) indicating flowering status in year 22.
+- Survived22: Whether the plant survived the second growing season
+  (2022); 1 = yes, 0 = no.
 
-- Seeded22: Binary (0/1) indicating seed production in year 22.
+- Flowered22: Whether the plant flowered in the second growing season
+  (2022); 1 = yes, 0 = no.
 
-- FlowerHeadNumber22: Number of flower heads produced in year 22.
+- Seeded22: Whether the plant produced seeds in the second growing
+  season (2022); 1 = yes, 0 = no.
 
-- SeedSetMass22: Mass of seeds set in year 22.
+- FlowerHeadNumber22: Total number of flower heads produced by the plant
+  in the second growing season (2022).
 
-- MaxArea22: Maximum area measured in year 22.
+- SeedSetMass22: Total seed set mass (in grams) from the flower heads
+  collected from the plant in the second growing season (2022).
 
-- GrowthRate22: Growth rate during year 22.
+- MaxArea22: Maximum lateral area (in cm^2) taken up by the plant across
+  the monthly measurements of the second growing season (2022).
 
-- Herbivory22: Herbivore damage measure during year 22.
+- GrowthRate22: Growth rate of the plant during the second growing
+  season (2022), calculated in the same way as GrowthRate21.
+
+- Herbivory22: Percentage of leaf area consumed by herbivores, averaged
+  across 5 trifoliate leaves per plant, in the second growing season
+  (2022).
+
+Missing values (NA) in the 2021 and 2022 measurements represent plants
+for which data could not be collected, or, for 2022, plants that had
+already died.

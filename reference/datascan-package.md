@@ -2,7 +2,7 @@
 
 Scans data for checking columns that are constant, one-to-one, missing
 or all unique. Users can also try to identify the columns that uniquely
-indexes the observational unit and whether some columns are nested or
+index the observational unit and whether some columns are nested or
 complete.
 
 ## See also
@@ -11,7 +11,7 @@ Useful links:
 
 - <https://github.com/emitanaka/datascan>
 
-- <http://emitanaka.org/datascan/>
+- <https://emitanaka.org/datascan/>
 
 - Report bugs at <https://github.com/emitanaka/datascan/issues>
 
