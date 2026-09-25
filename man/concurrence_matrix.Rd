@@ -19,7 +19,25 @@ concurrence_table(data, x, group, na.rm = FALSE)
 \item{na.rm}{Remove NA values when checking for concurrence.}
 }
 \value{
-A concurrence matrix or table
+\code{concurrence_matrix()} returns a symmetric numeric matrix of class
+\code{concurrence_mat} with one row and one column
+per level of \code{group}. The diagonal entries give the number of distinct
+levels of \code{x} observed at each level of \code{group}, and the off-diagonal
+entries give the number of levels of \code{x} shared by the two corresponding
+levels of \code{group}. The names of \code{x} and \code{group} are stored in the \code{.vars}
+attribute.
+
+\code{concurrence_table()} returns the same information in long format as a
+tibble of class \code{concurrence_tbl}, with one row per pair of \code{group} levels
+and the columns:
+\describe{
+\item{\verb{<group>_1}, \verb{<group>_2}}{Factors giving the pair of \code{group} levels.}
+\item{\code{concurrence}}{Number of levels of \code{x} shared by the pair.}
+\item{\code{prop_in_1}}{Proportion of the levels of \code{x} in \verb{<group>_1} that
+are also in \verb{<group>_2}.}
+\item{\code{prop_in_2}}{Proportion of the levels of \code{x} in \verb{<group>_2} that
+are also in \verb{<group>_1}.}
+}
 }
 \description{
 Find the number of common levels of first variable across the levels of the second variable.

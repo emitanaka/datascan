@@ -16,7 +16,7 @@ cols_identify_all(data, cutoff = 1, na.rm = FALSE, print = TRUE)
 \item{print}{Print the output or not.}
 }
 \value{
-A list for each issue.
+A named list with one element per check.
 }
 \description{
 This function identifies all columns with potential issues, including all unique values, bijective columns, constant columns, and columns with missing values above a certain cutoff. It returns a list of identified columns for each category and can print the results to the console.

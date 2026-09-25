@@ -7,7 +7,11 @@
 #' @param .data The data frame
 #' @param ... The columns in the data frame that potentially index the observational unit.
 #' @param .check_redundancy Logical. If TRUE, checks if any of the columns are redundant.
-#' @return A logical value.
+#' @return A single logical value. `TRUE` if the selected
+#'   columns uniquely identify each row of `.data` (and, when
+#'   `.check_redundancy = TRUE`, no selected column is redundant), and `FALSE`
+#'   otherwise. In an interactive session, a message with the result is also
+#'   printed.
 #' @examples
 #' is_observational_unit(ChickWeight, Time, Chick)
 #' is_observational_unit(ChickWeight, Time, Chick, Diet)
@@ -214,7 +218,7 @@ cols_bijective <- function(data) {
 #' @inheritParams cols_missing
 #' @inheritParams cols_constant
 #' @param print Print the output or not.
-#' @return A list for each issue.
+#' @return A named list with one element per check.
 #' @family quality checks
 #' @examples
 #' cols_identify_all(airquality)

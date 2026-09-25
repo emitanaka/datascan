@@ -17,7 +17,11 @@ is_obs_unit(.data, ..., .check_redundancy = TRUE)
 \item{.check_redundancy}{Logical. If TRUE, checks if any of the columns are redundant.}
 }
 \value{
-A logical value.
+A single logical value. \code{TRUE} if the selected
+columns uniquely identify each row of \code{.data} (and, when
+\code{.check_redundancy = TRUE}, no selected column is redundant), and \code{FALSE}
+otherwise. In an interactive session, a message with the result is also
+printed.
 }
 \description{
 An observational unit is the entity that is being measured in a study. For example, if blood pressure of a person is measured, then the person is the observational unit. If blood pressure is measured multiple times for a person, then the observational unit is the person and the time of measurement.

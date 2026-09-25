@@ -13,4 +13,5 @@ mult_sign <- function() cli::symbol$times
 #' @export
 #' @importFrom magrittr extract
 #' @usage x |> extract(i, j)
+#' @return The subset of `x` selected by `i` and `j`, equivalent to `x[i, j]`.
 NULL

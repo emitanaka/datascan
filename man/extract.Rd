@@ -6,6 +6,9 @@
 \usage{
 x |> extract(i, j)
 }
+\value{
+The subset of \code{x} selected by \code{i} and \code{j}, equivalent to \code{x[i, j]}.
+}
 \description{
 See \code{magrittr::extract} for details.
 This works well in conjunction with the concurrence_matrix function to extract specific rows and columns from the resulting matrix.

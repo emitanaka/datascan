@@ -9,7 +9,26 @@
 #' @param x Categorical variable to be used for the concurrence matrix.
 #' @param group Categorical grouping variable.
 #' @param na.rm Remove NA values when checking for concurrence.
-#' @return A concurrence matrix or table
+#' @return
+#' `concurrence_matrix()` returns a symmetric numeric matrix of class
+#' `concurrence_mat` with one row and one column
+#' per level of `group`. The diagonal entries give the number of distinct
+#' levels of `x` observed at each level of `group`, and the off-diagonal
+#' entries give the number of levels of `x` shared by the two corresponding
+#' levels of `group`. The names of `x` and `group` are stored in the `.vars`
+#' attribute.
+#'
+#' `concurrence_table()` returns the same information in long format as a
+#' tibble of class `concurrence_tbl`, with one row per pair of `group` levels
+#' and the columns:
+#' \describe{
+#'   \item{`<group>_1`, `<group>_2`}{Factors giving the pair of `group` levels.}
+#'   \item{`concurrence`}{Number of levels of `x` shared by the pair.}
+#'   \item{`prop_in_1`}{Proportion of the levels of `x` in `<group>_1` that
+#'     are also in `<group>_2`.}
+#'   \item{`prop_in_2`}{Proportion of the levels of `x` in `<group>_2` that
+#'     are also in `<group>_1`.}
+#' }
 #' @examples
 #' df <- expand.grid(gen = paste0("G", 1:20), env = paste0("E", 1:15))
 #' df <- df[sample(nrow(df), 100), ]
