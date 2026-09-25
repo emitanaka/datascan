@@ -1,3 +1,3 @@
-# datascan 0.1.0
+# datascan 0.1.1
 
 * Initial CRAN submission.

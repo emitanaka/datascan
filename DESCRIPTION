@@ -1,6 +1,6 @@
 Package: datascan
 Title: Scan Data for Quick Structural Summaries and Checks
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person("Emi", "Tanaka", , "dr.emi.tanaka@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-1455-259X"))
