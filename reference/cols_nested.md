@@ -9,7 +9,7 @@ the console.
 ## Usage
 
 ``` r
-cols_nested(data, na.rm = FALSE)
+cols_nested(data, na.rm = FALSE, ignore = c("constant", "unique", "bijective"))
 ```
 
 ## Arguments
@@ -22,10 +22,24 @@ cols_nested(data, na.rm = FALSE)
 
   Remove NA values when checking for nestedness.
 
+- ignore:
+
+  A character vector of trivial cases of nesting to ignore, i.e. not
+  count as nested. Any of `"constant"` (`x` or `y` has a single value),
+  `"unique"` (`x` has all unique values) and `"bijective"` (`x` and `y`
+  have a one-to-one correspondence). Use `NULL` to count all cases.
+
 ## Value
 
 A list of identified nested columns. The first element of each list is
 the child variable, and the second element is the parent variable.
+
+## Details
+
+By default, trivial cases of nesting (constant columns, columns with all
+unique values and pairs of bijective columns) are not reported as
+nested. Use `ignore` to change this (see
+[`is_nested()`](http://emitanaka.org/datascan/reference/is_nested.md)).
 
 ## See also
 
