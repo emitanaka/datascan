@@ -15,8 +15,12 @@ A numerical vector with non-numerical entries coerced to NA.
 \description{
 This function attempts to coerce a variable to numerical and identifies any non-numerical entries. It returns the coerced numerical vector and prints a message indicating any non-numerical entries found.
 }
+\details{
+Factors are coerced using their labels rather than their underlying integer codes.
+}
 \examples{
 as_numerical(c("1", "2", "A", "4", "B"))
+as_numerical(factor(c("10", "20", "A")))
 }
 \seealso{
 Other numerical:
