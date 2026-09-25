@@ -5,7 +5,7 @@
 \alias{watch_tits}
 \title{Coordination of care by breeders and helpers in the cooperatively breeding long-tailed tit}
 \format{
-An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 7950 rows and 21 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 7950 rows and 21 columns.
 }
 \source{
 Chay et al. (2022) "Coordination of care by breeders and helpers in the cooperatively breeding long-tailed tit, Aegithalos caudatus". Data available at Dryad: https://datadryad.org/dataset/doi:10.5061/dryad.mkkwh712k
@@ -25,9 +25,9 @@ watch_tits
 \item \code{carer_status}: Factor designating whether a carer was a breeding female (female), breeding male (male) or non-breeding helper (helper)
 \item \code{carer_id}: The unique identifier for each carer
 \item \code{total_feed_rate}: The number of feeds performed by all carers per hour
-\item \code{brood_size}: The number of days, since recorded hatching, that a watch was performed
+\item \code{brood_size}: The number of chicks in the brood
 \item \code{carer_number}: The number of carers observed provisioning during a given watch
-\item \code{watch_duration}: The time, in minutes, between the first and last recorded feed during a given watch
+\item \code{watch_duration_mins}: The time, in minutes, between the first and last recorded feed during a given watch
 \item \code{watch_time}: Number of hours since the start of the day 00:00 the watch was started
 \item \code{brood_age}: The number of days, since recorded hatching, that a watch was performed
 \item \code{julian_hatch_date}: The number of days since March 1 each year that the eggs hatched

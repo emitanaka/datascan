@@ -6,13 +6,13 @@
 \alias{datascan-package}
 \title{datascan: Scan Data for Quick Structural Summaries and Checks}
 \description{
-Scans data for checking columns that are constant, one-to-one, missing or all unique. Users can also try to identify the columns that uniquely indexes the observational unit and whether some columns are nested or complete.
+Scans data for checking columns that are constant, one-to-one, missing or all unique. Users can also try to identify the columns that uniquely index the observational unit and whether some columns are nested or complete.
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://github.com/emitanaka/datascan}
-  \item \url{http://emitanaka.org/datascan/}
+  \item \url{https://emitanaka.org/datascan/}
   \item Report bugs at \url{https://github.com/emitanaka/datascan/issues}
 }
 
