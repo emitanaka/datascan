@@ -20,6 +20,11 @@ as_numerical(x)
 
 A numerical vector with non-numerical entries coerced to NA.
 
+## Details
+
+Factors are coerced using their labels rather than their underlying
+integer codes.
+
 ## See also
 
 Other numerical:
@@ -31,4 +36,7 @@ Other numerical:
 as_numerical(c("1", "2", "A", "4", "B"))
 #> ✖ Non-numerical entries found: A, B
 #> [1]  1  2 NA  4 NA
+as_numerical(factor(c("10", "20", "A")))
+#> ✖ Non-numerical entries found: A
+#> [1] 10 20 NA
 ```
