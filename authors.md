@@ -11,13 +11,13 @@ Source:
 [`DESCRIPTION`](https://github.com/emitanaka/datascan/blob/master/DESCRIPTION)
 
 Tanaka E (2026). *datascan: Scan Data for Quick Structural Summaries and
-Checks*. R package version 0.1.0,
+Checks*. R package version 0.1.1,
 <https://github.com/emitanaka/datascan>.
 
     @Manual{,
       title = {datascan: Scan Data for Quick Structural Summaries and Checks},
       author = {Emi Tanaka},
       year = {2026},
-      note = {R package version 0.1.0},
+      note = {R package version 0.1.1},
       url = {https://github.com/emitanaka/datascan},
     }
