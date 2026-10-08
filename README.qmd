@@ -1,8 +1,10 @@
 ---
-format: gfm
+format:
+  gfm:
+    default-image-extension: ""
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- README.md is generated from README.qmd. Please edit that file -->
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -16,28 +18,181 @@ knitr::opts_chunk$set(
 # datascan
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/datascan)](https://CRAN.R-project.org/package=datascan)
 <!-- badges: end -->
 
 The goal of datascan is to provide a set of functions to perform data quality checks and data exploration in R. It includes functions for checking missing values, identifying nested columns, and other common data quality issues.
 
 ## Installation
 
-You can install the development version of datascan from [GitHub](https://github.com/) with:
+You can install the released version of datascan from [CRAN](https://CRAN.R-project.org/package=datascan) with:
+
+``` r
+install.packages("datascan")
+```
+
+You can install the development version of datascan from [GitHub](https://github.com/emitanaka/datascan) with:
 
 ``` r
 # install.packages("pak")
 pak::pak("emitanaka/datascan")
 ```
 
-## Example
+## Overview
 
-This is a basic example which shows you how to solve a common problem:
+`datascan` helps you get to know the structure of a new data set before you analyse it. 
 
-```{r example}
+```{r}
 library(datascan)
-head(CO2)
-cols_identify_all(CO2)
-cols_nested(CO2)
-concurrence_matrix(CO2, Plant, Type)
 ```
 
+## Scan all columns at once
+
+`cols_identify_all()` runs several checks together: columns where every value is unique, pairs of columns that are one-to-one, constant columns, and columns that are entirely missing.
+
+```{r}
+survey <- data.frame(
+  id = 1:6,
+  site = c("Melbourne", "Melbourne", "Sydney", "Sydney", "Perth", "Perth"),
+  site_code = c("MEL", "MEL", "SYD", "SYD", "PER", "PER"),
+  rainfall = c(30, 42, NA, 61, 12, NA),
+  notes = NA
+)
+cols_identify_all(survey)
+```
+
+Here `id` is a row identifier, `site` and `site_code` carry the same information, and `notes` is empty.
+
+## Find columns with particular values
+
+Each check returns the names of the matching columns, so the result can be used directly to select or drop columns.
+
+```{r}
+# columns with exactly two values
+cols_binary(mtcars)
+
+# columns with exactly three values
+cols_ternary(mtcars)
+
+# columns with a single value
+cols_constant(data.frame(x = 1:3, unit = "kg", site = c("A", "B", "C")))
+```
+
+Two columns are bijective when there is a one-to-one match between their values, for example a site name and a site code. One of them is usually redundant.
+
+```{r}
+sites <- data.frame(
+  site = c("Melbourne", "Melbourne", "Sydney", "Sydney", "Perth"),
+  code = c("MEL", "MEL", "SYD", "SYD", "PER"),
+  rainfall = c(30, 42, 55, 61, 12)
+)
+cols_bijective(sites)
+```
+
+## Find missing values
+
+`cols_missing()` and `rows_missing()` find the columns or rows where the proportion of missing values is at least `cutoff`. The default cutoff of 1 finds columns or rows that are entirely missing.
+
+```{r}
+# columns with at least 1% missing
+cols_missing(airquality, cutoff = 0.01)
+
+# columns with at least 20% missing
+cols_missing(airquality, cutoff = 0.2)
+
+# rows with at least 30% missing
+rows_missing(airquality, cutoff = 0.3)
+```
+
+## Find the observational unit
+
+The observational unit is the entity that each row measures. In `ChickWeight`, each row is the weight of one chick at one time point, so `Chick` and `Time` together identify each row. Adding `Diet` makes no difference, because each chick is given only one diet, so `Diet` is redundant.
+
+```{r}
+is_obs_unit(ChickWeight, Chick, Time)
+is_obs_unit(ChickWeight, Chick, Time, Diet)
+```
+
+In the `white_clover` experiment, each plant is identified by its garden, whole plot, split plot and position in the split plot.
+
+```{r}
+is_obs_unit(white_clover, Garden, WholePlotID, SplitPlotID, PlantID)
+```
+
+## Check nested and crossed structures
+
+A variable is nested within another if each of its levels appears in only one level of the other. `cols_nested()` checks every pair of columns. In `CO2`, each plant comes from one place (`Type`) and was given one treatment.
+
+```{r}
+cols_nested(CO2)
+```
+
+Nesting checks can also catch implicit nesting, where the same labels are reused in different groups. In `white_clover`, the whole plots are numbered 1 to 48 in *both* gardens, so `WholePlotID` on its own is not nested within `Garden`. Combining the two gives a unique whole plot identifier that is.
+
+```{r}
+is_nested(white_clover$WholePlotID, white_clover$Garden)
+
+whole_plot <- interaction(white_clover$Garden, white_clover$WholePlotID)
+is_nested(whole_plot, white_clover$Garden)
+```
+
+`cols_nested()` is also a quick way to see which variables are measured at which level. In `watch_tits`, each row is one bird (`carer_id`) during one feeding watch (`id`) at a nest. Each pair in the output is a child variable followed by the variable it is nested within. Watches are nested within nests, and nests within years. `brood_size` is recorded once per nest and `watch_time` once per watch, while `feeds` varies from bird to bird.
+
+```{r}
+tits <- watch_tits[c(
+  "id",
+  "carer_id",
+  "nest",
+  "year",
+  "brood_size",
+  "watch_time",
+  "feeds"
+)]
+cols_nested(tits)
+```
+
+By default, trivial cases of nesting are ignored: a constant column, a column with all unique values, or two bijective columns. Use `ignore` to choose which of these to leave out. Here, `site` and `site_code` are nested within each other only because they are bijective:
+
+```{r}
+cols_nested(sites)
+cols_nested(sites, ignore = c("constant", "unique"))
+```
+
+`is_complete()` checks the opposite situation: whether every level of one variable appears at every level of another, as in a fully crossed design.
+
+```{r}
+is_complete(CO2$conc, CO2$Plant)
+```
+
+## Count shared levels across groups
+
+`concurrence_matrix()` counts how many levels of one variable are shared between each pair of levels of another. For example, how many of the same birds were seen feeding in each pair of years:
+
+```{r}
+carers <- concurrence_matrix(watch_tits, carer_id, year)
+carers
+```
+
+The diagonal shows the number of birds seen in each year, and the off-diagonal shows the number seen in both years. Use `extract()` to look at particular years, or `proportions()` to get the proportion of each year's birds that were also seen in another year:
+
+```{r}
+extract(carers, c("2017", "2018", "2019"), c("2017", "2018", "2019"))
+proportions(carers, 1) |>
+  extract(c("2017", "2018", "2019"), c("2017", "2018", "2019"))
+```
+
+`concurrence_table()` gives the same information in long format, which is easier to filter or plot.
+
+```{r}
+concurrence_table(watch_tits, carer_id, year)
+```
+
+## Check numerical data
+
+Numbers are often read in as text because of a few entries such as `"<1"` or `"n/a"`. `is_numerical()` and `as_numerical()` report which entries cannot be converted to numbers.
+
+```{r}
+x <- c("12", "7.5", "<1", "3", "n/a")
+is_numerical(x)
+as_numerical(x)
+```
