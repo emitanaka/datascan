@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">datascan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,245 +50,64 @@
 <div class="page-header"><h1 id="datascan">datascan<a class="anchor" aria-label="anchor" href="#datascan"></a>
 </h1></div>
 <!-- badges: start -->
-
+<!-- badges: end -->
 <p>The goal of datascan is to provide a set of functions to perform data quality checks and data exploration in R. It includes functions for checking missing values, identifying nested columns, and other common data quality issues.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the released version of datascan from <a href="https://CRAN.R-project.org/package=datascan" class="external-link">CRAN</a> with:</p>
+<p>You can install the development version of datascan from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"datascan"</span><span class="op">)</span></span></code></pre></div>
-<p>You can install the development version of datascan from <a href="https://github.com/emitanaka/datascan" class="external-link">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"emitanaka/datascan"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p><code>datascan</code> helps you get to know the structure of a new data set before you analyse it.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/emitanaka/datascan" class="external-link">datascan</a></span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="scan-all-columns-at-once">Scan all columns at once<a class="anchor" aria-label="anchor" href="#scan-all-columns-at-once"></a>
-</h2>
-<p><code><a href="reference/cols_identify_all.html">cols_identify_all()</a></code> runs several checks together: columns where every value is unique, pairs of columns that are one-to-one, constant columns, and columns that are entirely missing.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">survey</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,</span>
-<span>  site <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Melbourne"</span>, <span class="st">"Melbourne"</span>, <span class="st">"Sydney"</span>, <span class="st">"Sydney"</span>, <span class="st">"Perth"</span>, <span class="st">"Perth"</span><span class="op">)</span>,</span>
-<span>  site_code <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MEL"</span>, <span class="st">"MEL"</span>, <span class="st">"SYD"</span>, <span class="st">"SYD"</span>, <span class="st">"PER"</span>, <span class="st">"PER"</span><span class="op">)</span>,</span>
-<span>  rainfall <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">42</span>, <span class="cn">NA</span>, <span class="fl">61</span>, <span class="fl">12</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
-<span>  notes <span class="op">=</span> <span class="cn">NA</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/cols_identify_all.html">cols_identify_all</a></span><span class="op">(</span><span class="va">survey</span><span class="op">)</span></span>
+<p>This is a basic example which shows you how to solve a common problem:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/emitanaka/datascan" class="external-link">datascan</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">CO2</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Plant   Type  Treatment conc uptake</span></span>
+<span><span class="co">#&gt; 1   Qn1 Quebec nonchilled   95   16.0</span></span>
+<span><span class="co">#&gt; 2   Qn1 Quebec nonchilled  175   30.4</span></span>
+<span><span class="co">#&gt; 3   Qn1 Quebec nonchilled  250   34.8</span></span>
+<span><span class="co">#&gt; 4   Qn1 Quebec nonchilled  350   37.2</span></span>
+<span><span class="co">#&gt; 5   Qn1 Quebec nonchilled  500   35.3</span></span>
+<span><span class="co">#&gt; 6   Qn1 Quebec nonchilled  675   39.2</span></span>
+<span><span class="fu"><a href="reference/cols_identify_all.html">cols_identify_all</a></span><span class="op">(</span><span class="va">CO2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; → No columns with all unique values.</span></span>
+<span><span class="co">#&gt; → No bijective columns.</span></span>
+<span><span class="co">#&gt; → No constant columns.</span></span>
+<span><span class="co">#&gt; → No identified columns with missing proportion.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Checking if all values are unique in a column ───────────────────────────────</span></span>
-<span><span class="co">#&gt; [1] "id"</span></span>
+<span><span class="co">#&gt; [1] NA</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Checking if any two columns are bijective ───────────────────────────────────</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "site"      "site_code"</span></span>
+<span><span class="co">#&gt; list()</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Checking if any column is all constant ──────────────────────────────────────</span></span>
-<span><span class="co">#&gt; [1] "notes"</span></span>
+<span><span class="co">#&gt; [1] NA</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Checking if columns with preset cut-off in missing values ───────────────────</span></span>
-<span><span class="co">#&gt; [1] "notes"</span></span></code></pre></div>
-<p>Here <code>id</code> is a row identifier, <code>site</code> and <code>site_code</code> carry the same information, and <code>notes</code> is empty.</p>
-</div>
-<div class="section level2">
-<h2 id="find-columns-with-particular-values">Find columns with particular values<a class="anchor" aria-label="anchor" href="#find-columns-with-particular-values"></a>
-</h2>
-<p>Each check returns the names of the matching columns, so the result can be used directly to select or drop columns.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># columns with exactly two values</span></span>
-<span><span class="fu"><a href="reference/cols_multinary.html">cols_binary</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "vs" "am"</span></span>
-<span></span>
-<span><span class="co"># columns with exactly three values</span></span>
-<span><span class="fu"><a href="reference/cols_multinary.html">cols_ternary</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "cyl"  "gear"</span></span>
-<span></span>
-<span><span class="co"># columns with a single value</span></span>
-<span><span class="fu"><a href="reference/cols_constant.html">cols_constant</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, unit <span class="op">=</span> <span class="st">"kg"</span>, site <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "unit"</span></span></code></pre></div>
-<p>Two columns are bijective when there is a one-to-one match between their values, for example a site name and a site code. One of them is usually redundant.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span>  site <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Melbourne"</span>, <span class="st">"Melbourne"</span>, <span class="st">"Sydney"</span>, <span class="st">"Sydney"</span>, <span class="st">"Perth"</span><span class="op">)</span>,</span>
-<span>  code <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MEL"</span>, <span class="st">"MEL"</span>, <span class="st">"SYD"</span>, <span class="st">"SYD"</span>, <span class="st">"PER"</span><span class="op">)</span>,</span>
-<span>  rainfall <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">42</span>, <span class="fl">55</span>, <span class="fl">61</span>, <span class="fl">12</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/cols_bijective.html">cols_bijective</a></span><span class="op">(</span><span class="va">sites</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "site" "code"</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="find-missing-values">Find missing values<a class="anchor" aria-label="anchor" href="#find-missing-values"></a>
-</h2>
-<p><code><a href="reference/cols_missing.html">cols_missing()</a></code> and <code><a href="reference/rows_missing.html">rows_missing()</a></code> find the columns or rows where the proportion of missing values is at least <code>cutoff</code>. The default cutoff of 1 finds columns or rows that are entirely missing.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># columns with at least 1% missing</span></span>
-<span><span class="fu"><a href="reference/cols_missing.html">cols_missing</a></span><span class="op">(</span><span class="va">airquality</span>, cutoff <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Ozone"   "Solar.R"</span></span>
-<span></span>
-<span><span class="co"># columns with at least 20% missing</span></span>
-<span><span class="fu"><a href="reference/cols_missing.html">cols_missing</a></span><span class="op">(</span><span class="va">airquality</span>, cutoff <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Ozone"</span></span>
-<span></span>
-<span><span class="co"># rows with at least 30% missing</span></span>
-<span><span class="fu"><a href="reference/rows_missing.html">rows_missing</a></span><span class="op">(</span><span class="va">airquality</span>, cutoff <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1]  5 27</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="find-the-observational-unit">Find the observational unit<a class="anchor" aria-label="anchor" href="#find-the-observational-unit"></a>
-</h2>
-<p>The observational unit is the entity that each row measures. In <code>ChickWeight</code>, each row is the weight of one chick at one time point, so <code>Chick</code> and <code>Time</code> together identify each row. Adding <code>Diet</code> makes no difference, because each chick is given only one diet, so <code>Diet</code> is redundant.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/is_observational_unit.html">is_obs_unit</a></span><span class="op">(</span><span class="va">ChickWeight</span>, <span class="va">Chick</span>, <span class="va">Time</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/is_observational_unit.html">is_obs_unit</a></span><span class="op">(</span><span class="va">ChickWeight</span>, <span class="va">Chick</span>, <span class="va">Time</span>, <span class="va">Diet</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ✖ `Diet` is redundant.</span></span></code></pre></div>
-<p>In the <code>white_clover</code> experiment, each plant is identified by its garden, whole plot, split plot and position in the split plot.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/is_observational_unit.html">is_obs_unit</a></span><span class="op">(</span><span class="va">white_clover</span>, <span class="va">Garden</span>, <span class="va">WholePlotID</span>, <span class="va">SplitPlotID</span>, <span class="va">PlantID</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="check-nested-and-crossed-structures">Check nested and crossed structures<a class="anchor" aria-label="anchor" href="#check-nested-and-crossed-structures"></a>
-</h2>
-<p>A variable is nested within another if each of its levels appears in only one level of the other. <code><a href="reference/cols_nested.html">cols_nested()</a></code> checks every pair of columns. In <code>CO2</code>, each plant comes from one place (<code>Type</code>) and was given one treatment.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/cols_nested.html">cols_nested</a></span><span class="op">(</span><span class="va">CO2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] NA</span></span>
+<span><span class="fu"><a href="reference/cols_nested.html">cols_nested</a></span><span class="op">(</span><span class="va">CO2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
 <span><span class="co">#&gt; [1] "Plant" "Type" </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt; [1] "Plant"     "Treatment"</span></span></code></pre></div>
-<p>Nesting checks can also catch implicit nesting, where the same labels are reused in different groups. In <code>white_clover</code>, the whole plots are numbered 1 to 48 in <em>both</em> gardens, so <code>WholePlotID</code> on its own is not nested within <code>Garden</code>. Combining the two gives a unique whole plot identifier that is.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/is_nested.html">is_nested</a></span><span class="op">(</span><span class="va">white_clover</span><span class="op">$</span><span class="va">WholePlotID</span>, <span class="va">white_clover</span><span class="op">$</span><span class="va">Garden</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] FALSE</span></span>
-<span></span>
-<span><span class="va">whole_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/interaction.html" class="external-link">interaction</a></span><span class="op">(</span><span class="va">white_clover</span><span class="op">$</span><span class="va">Garden</span>, <span class="va">white_clover</span><span class="op">$</span><span class="va">WholePlotID</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/is_nested.html">is_nested</a></span><span class="op">(</span><span class="va">whole_plot</span>, <span class="va">white_clover</span><span class="op">$</span><span class="va">Garden</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
-<p><code><a href="reference/cols_nested.html">cols_nested()</a></code> is also a quick way to see which variables are measured at which level. In <code>watch_tits</code>, each row is one bird (<code>carer_id</code>) during one feeding watch (<code>id</code>) at a nest. Each pair in the output is a child variable followed by the variable it is nested within. Watches are nested within nests, and nests within years. <code>brood_size</code> is recorded once per nest and <code>watch_time</code> once per watch, while <code>feeds</code> varies from bird to bird.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tits</span> <span class="op">&lt;-</span> <span class="va">watch_tits</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>  <span class="st">"id"</span>,</span>
-<span>  <span class="st">"carer_id"</span>,</span>
-<span>  <span class="st">"nest"</span>,</span>
-<span>  <span class="st">"year"</span>,</span>
-<span>  <span class="st">"brood_size"</span>,</span>
-<span>  <span class="st">"watch_time"</span>,</span>
-<span>  <span class="st">"feeds"</span></span>
-<span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="fu"><a href="reference/cols_nested.html">cols_nested</a></span><span class="op">(</span><span class="va">tits</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "id"   "nest"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt; [1] "id"   "year"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[3]]</span></span>
-<span><span class="co">#&gt; [1] "id"         "brood_size"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[4]]</span></span>
-<span><span class="co">#&gt; [1] "id"         "watch_time"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[5]]</span></span>
-<span><span class="co">#&gt; [1] "nest" "year"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[6]]</span></span>
-<span><span class="co">#&gt; [1] "nest"       "brood_size"</span></span></code></pre></div>
-<p>By default, trivial cases of nesting are ignored: a constant column, a column with all unique values, or two bijective columns. Use <code>ignore</code> to choose which of these to leave out. Here, <code>site</code> and <code>site_code</code> are nested within each other only because they are bijective:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/cols_nested.html">cols_nested</a></span><span class="op">(</span><span class="va">sites</span><span class="op">)</span></span>
-<span><span class="co">#&gt; list()</span></span>
-<span><span class="fu"><a href="reference/cols_nested.html">cols_nested</a></span><span class="op">(</span><span class="va">sites</span>, ignore <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"constant"</span>, <span class="st">"unique"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "site" "code"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt; [1] "code" "site"</span></span></code></pre></div>
-<p><code><a href="reference/is_complete.html">is_complete()</a></code> checks the opposite situation: whether every level of one variable appears at every level of another, as in a fully crossed design.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/is_complete.html">is_complete</a></span><span class="op">(</span><span class="va">CO2</span><span class="op">$</span><span class="va">conc</span>, <span class="va">CO2</span><span class="op">$</span><span class="va">Plant</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="count-shared-levels-across-groups">Count shared levels across groups<a class="anchor" aria-label="anchor" href="#count-shared-levels-across-groups"></a>
-</h2>
-<p><code><a href="reference/concurrence_matrix.html">concurrence_matrix()</a></code> counts how many levels of one variable are shared between each pair of levels of another. For example, how many of the same birds were seen feeding in each pair of years:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">carers</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/concurrence_matrix.html">concurrence_matrix</a></span><span class="op">(</span><span class="va">watch_tits</span>, <span class="va">carer_id</span>, <span class="va">year</span><span class="op">)</span></span>
-<span><span class="va">carers</span></span>
-<span><span class="co">#&gt; • Diagonal shows the total number of levels for carer_id at the corresponding</span></span>
-<span><span class="co">#&gt;   level for year</span></span>
-<span><span class="co">#&gt; • Off-diagonal shows the number of common levels for carer_id between the two</span></span>
-<span><span class="co">#&gt;   levels for year</span></span>
-<span><span class="co">#&gt;       </span></span>
-<span><span class="co">#&gt;        1994 1995 1996 1997 1998 1999 2000 2001 2002 2003</span></span>
-<span><span class="co">#&gt;   1994   24   12    2    2    2    1    0    0    1    1</span></span>
-<span><span class="co">#&gt;   1995   12   32    8    2    5    1    0    0    1    1</span></span>
-<span><span class="co">#&gt;   1996    2    8   23    3    4    1    0    0    0    0</span></span>
-<span><span class="co">#&gt;   1997    2    2    3   17    2    1    0    0    0    0</span></span>
-<span><span class="co">#&gt;   1998    2    5    4    2   18    3    0    1    2    1</span></span>
-<span><span class="co">#&gt;   1999    1    1    1    1    3   28    7    5    2    2</span></span>
-<span><span class="co">#&gt;   2000    0    0    0    0    0    7   35    6    3    2</span></span>
-<span><span class="co">#&gt;   2001    0    0    0    0    1    5    6   23    7    4</span></span>
-<span><span class="co">#&gt;   2002    1    1    0    0    2    2    3    7   24    4</span></span>
-<span><span class="co">#&gt;   2003    1    1    0    0    1    2    2    4    4   36</span></span>
-<span><span class="co">#&gt;   ...</span></span>
-<span><span class="co">#&gt; ℹ Concurrence matrix: 24 × 24 year. Showing only 10 × 10. Use `print(x, n =</span></span>
-<span><span class="co">#&gt;   ...)` to show more.</span></span></code></pre></div>
-<p>The diagonal shows the number of birds seen in each year, and the off-diagonal shows the number seen in both years. Use <code><a href="reference/extract.html">extract()</a></code> to look at particular years, or <code><a href="https://rdrr.io/r/base/proportions.html" class="external-link">proportions()</a></code> to get the proportion of each year’s birds that were also seen in another year:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/extract.html">extract</a></span><span class="op">(</span><span class="va">carers</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2017"</span>, <span class="st">"2018"</span>, <span class="st">"2019"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2017"</span>, <span class="st">"2018"</span>, <span class="st">"2019"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       </span></span>
-<span><span class="co">#&gt;        2017 2018 2019</span></span>
-<span><span class="co">#&gt;   2017   22    5    3</span></span>
-<span><span class="co">#&gt;   2018    5   40   11</span></span>
-<span><span class="co">#&gt;   2019    3   11   52</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/proportions.html" class="external-link">proportions</a></span><span class="op">(</span><span class="va">carers</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/extract.html">extract</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2017"</span>, <span class="st">"2018"</span>, <span class="st">"2019"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2017"</span>, <span class="st">"2018"</span>, <span class="st">"2019"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       </span></span>
-<span><span class="co">#&gt;              2017      2018      2019</span></span>
-<span><span class="co">#&gt;   2017 0.55000000 0.1250000 0.0750000</span></span>
-<span><span class="co">#&gt;   2018 0.07246377 0.5797101 0.1594203</span></span>
-<span><span class="co">#&gt;   2019 0.03846154 0.1410256 0.6666667</span></span></code></pre></div>
-<p><code><a href="reference/concurrence_matrix.html">concurrence_table()</a></code> gives the same information in long format, which is easier to filter or plot.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/concurrence_matrix.html">concurrence_table</a></span><span class="op">(</span><span class="va">watch_tits</span>, <span class="va">carer_id</span>, <span class="va">year</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble:  576 × 5</span></span>
-<span><span class="co">#&gt; # Dimension: 24 × 24 environments</span></span>
-<span><span class="co">#&gt;    year_1 year_2 concurrence prop_in_1 prop_in_2</span></span>
-<span><span class="co">#&gt;    &lt;fct&gt;  &lt;fct&gt;        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1 1994   1994            24    1         1     </span></span>
-<span><span class="co">#&gt;  2 1994   1995            12    0.5       0.375 </span></span>
-<span><span class="co">#&gt;  3 1994   1996             2    0.0833    0.0870</span></span>
-<span><span class="co">#&gt;  4 1994   1997             2    0.0833    0.118 </span></span>
-<span><span class="co">#&gt;  5 1994   1998             2    0.0833    0.111 </span></span>
-<span><span class="co">#&gt;  6 1994   1999             1    0.0417    0.0357</span></span>
-<span><span class="co">#&gt;  7 1994   2000             0    0         0     </span></span>
-<span><span class="co">#&gt;  8 1994   2001             0    0         0     </span></span>
-<span><span class="co">#&gt;  9 1994   2002             1    0.0417    0.0417</span></span>
-<span><span class="co">#&gt; 10 1994   2003             1    0.0417    0.0278</span></span>
-<span><span class="co">#&gt; # ℹ 566 more rows</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="check-numerical-data">Check numerical data<a class="anchor" aria-label="anchor" href="#check-numerical-data"></a>
-</h2>
-<p>Numbers are often read in as text because of a few entries such as <code>"&lt;1"</code> or <code>"n/a"</code>. <code><a href="reference/is_numerical.html">is_numerical()</a></code> and <code><a href="reference/as_numerical.html">as_numerical()</a></code> report which entries cannot be converted to numbers.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"12"</span>, <span class="st">"7.5"</span>, <span class="st">"&lt;1"</span>, <span class="st">"3"</span>, <span class="st">"n/a"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/is_numerical.html">is_numerical</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ✖ Non-numerical entries found: &lt;1, n/a</span></span>
-<span><span class="co">#&gt; [1] FALSE</span></span>
-<span><span class="fu"><a href="reference/as_numerical.html">as_numerical</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ✖ Non-numerical entries found: &lt;1, n/a</span></span>
-<span><span class="co">#&gt; [1] 12.0  7.5   NA  3.0   NA</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "Plant"     "Treatment"</span></span>
+<span><span class="fu"><a href="reference/concurrence_matrix.html">concurrence_matrix</a></span><span class="op">(</span><span class="va">CO2</span>, <span class="va">Plant</span>, <span class="va">Type</span><span class="op">)</span></span>
+<span><span class="co">#&gt; • Diagonal shows the total number of levels for Plant at the corresponding</span></span>
+<span><span class="co">#&gt;   level for Type</span></span>
+<span><span class="co">#&gt; • Off-diagonal shows the number of common levels for Plant between the two</span></span>
+<span><span class="co">#&gt;   levels for Type</span></span>
+<span><span class="co">#&gt;              </span></span>
+<span><span class="co">#&gt;               Quebec Mississippi</span></span>
+<span><span class="co">#&gt;   Quebec           6           0</span></span>
+<span><span class="co">#&gt;   Mississippi      0           6</span></span>
+<span><span class="co">#&gt;   </span></span>
+<span><span class="co">#&gt; ℹ Concurrence matrix: 2 × 2 Type.</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -323,12 +142,7 @@
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://CRAN.R-project.org/package=datascan" class="external-link"><img src="https://www.r-pkg.org/badges/version/datascan" alt="CRAN status"></a></li>
-</ul>
-</div>
+
 
   </aside>
 </div>
