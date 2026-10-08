@@ -11,7 +11,7 @@ If there are no identified columns, it will return NA."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">datascan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@ If there are no identified columns, it will return NA."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Identify columns that have certain proportion of missing values</h1>
-      <small class="dont-index">Source: <a href="https://github.com/emitanaka/datascan/blob/v0.1.1/R/column-checks.R" class="external-link"><code>R/column-checks.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/emitanaka/datascan/blob/master/R/column-checks.R" class="external-link"><code>R/column-checks.R</code></a></small>
       <div class="d-none name"><code>cols_missing.Rd</code></div>
     </div>
 
@@ -57,7 +57,9 @@ If there are no identified columns, it will return NA.</p>
 
 
 <dt id="arg-cutoff">cutoff<a class="anchor" aria-label="anchor" href="#arg-cutoff"></a></dt>
-<dd><p>The minimum cutoff for the proportion of missing values.</p></dd>
+<dd><p>The minimum cutoff for the proportion of missing values. The
+default of 1 finds columns that are entirely missing. A cutoff of 0 finds
+columns with any missing values.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -78,7 +80,7 @@ If there are no identified columns, it will return NA.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># find columns that have any missing values</span></span></span>
 <span class="r-in"><span><span class="fu">cols_missing</span><span class="op">(</span><span class="va">airquality</span>, <span class="fl">0</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Ozone"   "Solar.R" "Wind"    "Temp"    "Month"   "Day"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Ozone"   "Solar.R"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

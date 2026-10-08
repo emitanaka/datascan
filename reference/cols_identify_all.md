@@ -19,7 +19,9 @@ cols_identify_all(data, cutoff = 1, na.rm = FALSE, print = TRUE)
 
 - cutoff:
 
-  The minimum cutoff for the proportion of missing values.
+  The minimum cutoff for the proportion of missing values. The default
+  of 1 finds columns that are entirely missing. A cutoff of 0 finds
+  columns with any missing values.
 
 - na.rm:
 

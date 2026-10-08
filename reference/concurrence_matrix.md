@@ -29,7 +29,8 @@ concurrence_table(data, x, group, na.rm = FALSE)
 
 - na.rm:
 
-  Remove NA values when checking for concurrence.
+  Remove NA values when checking for concurrence. If FALSE, NA is
+  treated as a level of `x` and `group`.
 
 ## Value
 

@@ -18,7 +18,9 @@ rows_missing(data, cutoff = 1)
 
 - cutoff:
 
-  The minimum cutoff for the proportion of missing values.
+  The minimum cutoff for the proportion of missing values. The default
+  of 1 finds rows that are entirely missing. A cutoff of 0 finds rows
+  with any missing values.
 
 ## Value
 

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">datascan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,14 +29,27 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/emitanaka/datascan/blob/v0.1.1/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/emitanaka/datascan/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.1" id="datascan-011">datascan 0.1.1<a class="anchor" aria-label="anchor" href="#datascan-011"></a></h2><p class="text-muted">CRAN release: 2026-10-06</p>
-<ul><li>Initial CRAN submission.</li>
+<h2 class="pkg-version" data-toc-text="development version" id="datascan-development-version">datascan (development version)<a class="anchor" aria-label="anchor" href="#datascan-development-version"></a></h2>
+<ul><li>
+<code><a href="../reference/cols_missing.html">cols_missing()</a></code> and <code><a href="../reference/rows_missing.html">rows_missing()</a></code> with <code>cutoff = 0</code> now return only the columns or rows that have at least one missing value, instead of all of them.</li>
+<li>
+<code><a href="../reference/concurrence_matrix.html">concurrence_matrix()</a></code> and <code><a href="../reference/concurrence_matrix.html">concurrence_table()</a></code> now treat <code>NA</code> as a level when <code>na.rm = FALSE</code>, instead of silently dropping it. As a result, <code><a href="../reference/is_nested.html">is_nested()</a></code>, <code><a href="../reference/is_complete.html">is_complete()</a></code> and <code><a href="../reference/cols_nested.html">cols_nested()</a></code> with <code>na.rm = FALSE</code> now take missing values into account.</li>
+<li>
+<code><a href="../reference/concurrence_matrix.html">concurrence_table()</a></code> now shows the name of the grouping variable in its header, instead of always saying “environments”.</li>
+<li>
+<code><a href="../reference/cols_bijective.html">cols_bijective()</a></code> no longer reports constant columns as bijective with each other.</li>
+<li>tidyr is no longer a dependency.</li>
 </ul></div>
-  </main></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.1" id="datascan-011">datascan 0.1.1<a class="anchor" aria-label="anchor" href="#datascan-011"></a></h2><p class="text-muted">CRAN release: 2026-10-06</p>
+<ul><li>Initial CRAN release.</li>
+</ul></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

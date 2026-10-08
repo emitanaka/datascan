@@ -18,7 +18,9 @@ cols_missing(data, cutoff = 1)
 
 - cutoff:
 
-  The minimum cutoff for the proportion of missing values.
+  The minimum cutoff for the proportion of missing values. The default
+  of 1 finds columns that are entirely missing. A cutoff of 0 finds
+  columns with any missing values.
 
 ## Value
 
@@ -39,5 +41,5 @@ Other quality checks:
 ``` r
 # find columns that have any missing values
 cols_missing(airquality, 0)
-#> [1] "Ozone"   "Solar.R" "Wind"    "Temp"    "Month"   "Day"    
+#> [1] "Ozone"   "Solar.R"
 ```
