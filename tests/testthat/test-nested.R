@@ -17,6 +17,13 @@ test_that("is_nested can remove missing values", {
   expect_true(is_nested(plot, site, na.rm = TRUE))
 })
 
+test_that("is_nested treats NA as a level unless na.rm = TRUE", {
+  x <- c(1, 2, NA, 3, 3, NA)
+  y <- c("a", "a", "a", "b", "b", "b")
+  expect_false(is_nested(x, y, na.rm = FALSE))
+  expect_true(is_nested(x, y, na.rm = TRUE))
+})
+
 test_that("is_nested ignores trivial cases by default", {
   id <- 1:4
   site <- c("A", "A", "B", "B")

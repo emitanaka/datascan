@@ -26,3 +26,30 @@ test_that("check works", {
     "x4"
   )
 })
+
+test_that("missing checks use the cutoff", {
+  df <- data.frame(
+    none = 1:4,
+    some = c(1, NA, 3, 4),
+    half = c(NA, NA, 3, 4),
+    all = NA
+  )
+  expect_equal(cols_missing(df), "all")
+  expect_equal(cols_missing(df, 0), c("some", "half", "all"))
+  expect_equal(cols_missing(df, 0.5), c("half", "all"))
+  expect_equal(rows_missing(df), NA)
+  expect_equal(rows_missing(df, 0), 1:4)
+  expect_equal(rows_missing(df, 0.5), 1:2)
+  expect_equal(rows_missing(df, 0.75), 2L)
+})
+
+test_that("cols_bijective ignores constant and all unique columns", {
+  df <- data.frame(
+    id = 1:4,
+    unit = "kg",
+    notes = NA,
+    site = c("A", "A", "B", "B"),
+    code = c("a", "a", "b", "b")
+  )
+  expect_equal(cols_bijective(df), list(c("site", "code")))
+})

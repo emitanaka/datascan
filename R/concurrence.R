@@ -8,7 +8,8 @@
 #' @param data A data frame containing the MET data
 #' @param x Categorical variable to be used for the concurrence matrix.
 #' @param group Categorical grouping variable.
-#' @param na.rm Remove NA values when checking for concurrence.
+#' @param na.rm Remove NA values when checking for concurrence. If FALSE, NA
+#'   is treated as a level of `x` and `group`.
 #' @return
 #' `concurrence_matrix()` returns a symmetric numeric matrix of class
 #' `concurrence_mat` with one row and one column
@@ -47,7 +48,12 @@ concurrence_matrix <- function(data, x, group, na.rm = FALSE) {
   if (na.rm) {
     data <- data[!is.na(data[[x]]) & !is.na(data[[group]]), ]
   }
-  tt <- table(data[[group]], data[[x]]) > 0
+  tt <- table(
+    data[[group]],
+    data[[x]],
+    useNA = if (na.rm) "no" else "ifany"
+  ) >
+    0
   res <- tt %*% t(tt)
   structure(
     res,
@@ -87,34 +93,27 @@ print.concurrence_mat <- function(x, n = 10, ...) {
 #' @export
 concurrence_table <- function(data, x, group, na.rm = FALSE) {
   mat <- concurrence_matrix(data, {{ x }}, {{ group }}, na.rm = na.rm)
-  inv_mat <- diag(1 / diag(mat))
-  dimnames(inv_mat) <- dimnames(mat)
-  prop1 <- as.data.frame(inv_mat %*% mat)
-  prop2 <- as.data.frame(mat %*% inv_mat)
-  res <- as.data.frame(mat)
-
   grp_var <- attr(mat, ".vars")[2]
   grp_var1 <- paste0(grp_var, "_1")
   grp_var2 <- paste0(grp_var, "_2")
-  convert_to_long <- function(dat, name = "concurrence") {
-    dat <- dat |>
-      tibble::rownames_to_column(grp_var1) |>
-      tidyr::pivot_longer(
-        -tidyselect::any_of(grp_var1),
-        names_to = grp_var2,
-        values_to = name
-      )
-    dat[[grp_var1]] <- factor(dat[[grp_var1]])
-    dat[[grp_var2]] <- factor(dat[[grp_var2]])
-    dat
-  }
-  res <- convert_to_long(res, name = "concurrence")
-  prop1 <- convert_to_long(prop1, name = "prop_in_1")
-  prop2 <- convert_to_long(prop2, name = "prop_in_2")
+  # build the long format by index rather than by dimnames, as NA can be a level
+  lvls <- rownames(mat)
+  n <- length(lvls)
+  idx1 <- rep(seq_len(n), each = n)
+  idx2 <- rep(seq_len(n), times = n)
+  concurrence <- unclass(mat)[cbind(idx1, idx2)]
+  res <- tibble::tibble(
+    group_1 = factor(lvls[idx1], exclude = NULL),
+    group_2 = factor(lvls[idx2], exclude = NULL),
+    concurrence = concurrence,
+    prop_in_1 = concurrence / diag(mat)[idx1],
+    prop_in_2 = concurrence / diag(mat)[idx2]
+  )
+  names(res)[1:2] <- c(grp_var1, grp_var2)
   res[[grp_var1]] <- stats::reorder(res[[grp_var1]], res[["concurrence"]])
   res[[grp_var2]] <- stats::reorder(res[[grp_var2]], res[["concurrence"]])
-  res <- dplyr::left_join(res, prop1, by = c(grp_var1, grp_var2))
-  res <- dplyr::left_join(res, prop2, by = c(grp_var1, grp_var2))
+  attr(res[[grp_var1]], "scores") <- NULL
+  attr(res[[grp_var2]], "scores") <- NULL
   tibble::new_tibble(res, class = "concurrence_tbl", .group_var = grp_var)
 }
 
@@ -130,7 +129,8 @@ tbl_sum.concurrence_tbl <- function(x, ...) {
       mult_sign(),
       " ",
       dplyr::n_distinct(x[[paste0(grp_var, "_2")]]),
-      " environments"
+      " ",
+      grp_var
     )
   )
 }

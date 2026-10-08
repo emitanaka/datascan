@@ -9,7 +9,9 @@ cols_identify_all(data, cutoff = 1, na.rm = FALSE, print = TRUE)
 \arguments{
 \item{data}{The data frame}
 
-\item{cutoff}{The minimum cutoff for the proportion of missing values.}
+\item{cutoff}{The minimum cutoff for the proportion of missing values. The
+default of 1 finds columns that are entirely missing. A cutoff of 0 finds
+columns with any missing values.}
 
 \item{na.rm}{Should missing values be removed?}
 

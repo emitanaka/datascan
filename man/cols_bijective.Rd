@@ -13,8 +13,9 @@ cols_bijective(data)
 A list of character vectors of bijective columns.
 }
 \description{
-Any values that have all unique values will not be included in the
-output. If there are no identified columns, it will return an emtpy list.
+Columns that have all unique values or a single (constant) value are not
+included in the output, since any two such columns are trivially
+bijective. If there are no identified columns, it will return an empty list.
 }
 \examples{
 cols_bijective(OrchardSprays)

@@ -16,7 +16,8 @@ concurrence_table(data, x, group, na.rm = FALSE)
 
 \item{group}{Categorical grouping variable.}
 
-\item{na.rm}{Remove NA values when checking for concurrence.}
+\item{na.rm}{Remove NA values when checking for concurrence. If FALSE, NA
+is treated as a level of \code{x} and \code{group}.}
 }
 \value{
 \code{concurrence_matrix()} returns a symmetric numeric matrix of class

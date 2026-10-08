@@ -22,7 +22,6 @@ Imports:
     pillar,
     rlang,
     tibble,
-    tidyr,
     tidyselect
 Depends: 
     R (>= 4.1.0)

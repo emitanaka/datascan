@@ -247,10 +247,12 @@ is_complete(CO2$conc, CO2$Plant)
 
 `concurrence_matrix()` counts how many levels of one variable are shared
 between each pair of levels of another. For example, how many of the
-same birds were seen feeding in each pair of years:
+same birds were seen feeding in each pair of years. Some rows have no
+`carer_id`, so `na.rm = TRUE` drops them rather than counting the
+missing value as one more bird:
 
 ``` r
-carers <- concurrence_matrix(watch_tits, carer_id, year)
+carers <- concurrence_matrix(watch_tits, carer_id, year, na.rm = TRUE)
 carers
 #> • Diagonal shows the total number of levels for carer_id at the corresponding
 #>   level for year
@@ -298,9 +300,9 @@ proportions(carers, 1) |>
 is easier to filter or plot.
 
 ``` r
-concurrence_table(watch_tits, carer_id, year)
+concurrence_table(watch_tits, carer_id, year, na.rm = TRUE)
 #> # A tibble:  576 × 5
-#> # Dimension: 24 × 24 environments
+#> # Dimension: 24 × 24 year
 #>    year_1 year_2 concurrence prop_in_1 prop_in_2
 #>    <fct>  <fct>        <dbl>     <dbl>     <dbl>
 #>  1 1994   1994            24    1         1     

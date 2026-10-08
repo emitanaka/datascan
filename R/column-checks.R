@@ -85,7 +85,9 @@ cols_constant <- function(data, na.rm = FALSE) {
 #' If there are no identified columns, it will return NA.
 #'
 #' @param data The data frame
-#' @param cutoff The minimum cutoff for the proportion of missing values.
+#' @param cutoff The minimum cutoff for the proportion of missing values. The
+#'   default of 1 finds columns that are entirely missing. A cutoff of 0 finds
+#'   columns with any missing values.
 #' @return A character vector of column names with missing values with at least a certain proportion.
 #' @examples
 #' # find columns that have any missing values
@@ -96,7 +98,8 @@ cols_missing <- function(data, cutoff = 1) {
   cols <- if (cutoff >= 1) {
     colSums(is.na(data)) == nrow(data)
   } else {
-    (colSums(is.na(data)) / nrow(data)) >= cutoff
+    prop <- colSums(is.na(data)) / nrow(data)
+    prop > 0 & prop >= cutoff
   }
   if (!any(cols)) {
     cli::cli_alert("No identified columns with missing proportion.")
@@ -113,7 +116,9 @@ cols_missing <- function(data, cutoff = 1) {
 #' If there are no identified columns, it will return NA.
 #'
 #' @param data The data frame
-#' @param cutoff The minimum cutoff for the proportion of missing values.
+#' @param cutoff The minimum cutoff for the proportion of missing values. The
+#'   default of 1 finds rows that are entirely missing. A cutoff of 0 finds
+#'   rows with any missing values.
 #' @return An integer vector of rows with missing values with at least a certain proportion.
 #' @examples
 #' rows_missing(airquality, 0.1)
@@ -123,7 +128,8 @@ rows_missing <- function(data, cutoff = 1) {
   rows <- if (cutoff >= 1) {
     rowSums(is.na(data)) == ncol(data)
   } else {
-    (rowSums(is.na(data)) / ncol(data)) >= cutoff
+    prop <- rowSums(is.na(data)) / ncol(data)
+    prop > 0 & prop >= cutoff
   }
   if (!any(rows)) {
     cli::cli_alert("No identified rows with missing proportion.")
@@ -170,8 +176,9 @@ cols_all_unique <- function(data) {
 
 #' Identify bijective (one-to-one correspondence) columns
 #'
-#' Any values that have all unique values will not be included in the
-#' output. If there are no identified columns, it will return an emtpy list.
+#' Columns that have all unique values or a single (constant) value are not
+#' included in the output, since any two such columns are trivially
+#' bijective. If there are no identified columns, it will return an empty list.
 #'
 #' @param data The data frame
 #' @return A list of character vectors of bijective columns.
@@ -184,7 +191,10 @@ cols_bijective <- function(data) {
   stopifnot(ncol(data) > 0)
   stopifnot(!any(duplicated(names(data))))
   ndistinct_cols <- sapply(data, function(x) length(unique(x)))
-  data_alt <- data[, ndistinct_cols < nrow(data), drop = FALSE]
+  data_alt <- data[,
+    ndistinct_cols > 1 & ndistinct_cols < nrow(data),
+    drop = FALSE
+  ]
   for (idx in seq_along(data_alt)) {
     data_alt[[idx]] <- get_one_to_one_value_order(data_alt[[idx]])
   }
